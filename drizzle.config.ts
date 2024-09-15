@@ -1,16 +1,18 @@
-import { Config, defineConfig } from 'drizzle-kit'
-import { miscConfig } from './src/config'
+import { Config, defineConfig } from "drizzle-kit";
+import { miscConfig } from "./src/config";
 
 export default defineConfig({
-  schema: './src/models/*',
-  out: './drizzle',
+  schema: "./src/models/*",
+  out: "./drizzle",
   dialect: "postgresql",
+  schemaFilter: miscConfig.dbSchema,
   dbCredentials: {
     url: miscConfig.dbUrl as string,
-    host: "192.168.0.103",
-    port: 5432,
-    user: "postgres",
+    host: miscConfig.host,
+    port: Number(miscConfig.dbPort),
+    user: miscConfig.dbUserName,
     password: miscConfig.dbPassword,
     database: miscConfig.dbName,
-  }
-})
+    ssl: false,
+  },
+});

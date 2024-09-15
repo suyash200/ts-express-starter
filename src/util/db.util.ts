@@ -6,19 +6,20 @@ import logger from "./logger.util";
 
 export let db: NodePgDatabase;
 export default async function DbCon() {
-  const dbClient = new postgres.Client({
-    host: "127.0.0.1",
-    port: 5432,
-    user: "postgres",
-    password: miscConfig.dbPassword,
-    database: miscConfig.dbName,
-  });
-  await dbClient.connect((err) => {
-    if (err) logger.error(`DbCon failed ${err.message}`, err);
-  });
-  db = drizzle(dbClient, { logger: true });
-  return db
-
+  try {
+    const dbClient = new postgres.Client({
+      host: miscConfig.host,
+      port: Number(miscConfig.dbPort),
+      user: miscConfig.dbUserName,
+      password: miscConfig.dbPassword,
+      database: miscConfig.dbName,
+    });
+    await dbClient.connect();
+    db = drizzle(dbClient, { logger: true });
+    logger.info("DB connected");
+    return db;
+  } catch (error: any | Error) {
+    logger.destroy(error);
+    throw new Error("DB CON error");
+  }
 }
-
-

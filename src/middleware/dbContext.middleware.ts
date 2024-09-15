@@ -1,13 +1,16 @@
-import { Request, Response } from "express";
-import DbCon from "../util/db.util";
+import { NextFunction, Request, Response } from "express";
+import { db } from "../util/db.util";
 
-export default async function(req: Request, res: Response) {
-  const logger = req.log;
+export default async function (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) {
   try {
-    const db = await DbCon();
     req.dbCon = db;
+    next();
   } catch (err: any | Error) {
-    logger.error(`Error arised due to ${err.message}`, err);
+    res.status(200);
     throw new Error(err);
   }
 }

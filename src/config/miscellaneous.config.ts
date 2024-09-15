@@ -1,4 +1,4 @@
-export default function(env: NodeJS.ProcessEnv) {
+export default function (env: NodeJS.ProcessEnv) {
   return {
     port: env.PORT,
     jwtSecret: env.JWT_SECRET,
@@ -10,5 +10,8 @@ export default function(env: NodeJS.ProcessEnv) {
     dbPassword: env.DB_PASSWORD,
     dbUserName: env.DB_USERNAME,
     dbUrl: env.DB_URL,
+    host: env.HOST,
+    dbSchema: env.DB_SCHEMA,
+    dbPort: env.DB_PORT,
   };
 }

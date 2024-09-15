@@ -5,8 +5,6 @@ import { ResponseBody } from "../types/express";
 function requestContext(req: Request, res: Response, next: NextFunction) {
   const start = Date.now(); // Record the start time of the request
 
-
-
   req.log = logger;
 
   // Capture the original 'res.json' method
@@ -16,7 +14,7 @@ function requestContext(req: Request, res: Response, next: NextFunction) {
   let responseBody: ResponseBody;
 
   // Intercept the 'res.json' method
-  res.json = function(body: any) {
+  res.json = function (body: any) {
     // Store the response body
     responseBody = body;
 
@@ -60,7 +58,7 @@ function requestContext(req: Request, res: Response, next: NextFunction) {
   });
 
   // Add traceId to context and call the next function
-  next
+  next();
 }
 
 export default requestContext;

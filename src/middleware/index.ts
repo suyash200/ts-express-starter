@@ -6,11 +6,9 @@ import dbContextMiddleware from "./dbContext.middleware";
 const corsOptions: CorsOptions = {
   origin: [miscConfig.frontEndUrl, "*"],
   credentials: true,
+};
 
-}
-
-
-export default function(app: Application) {
+export default function (app: Application) {
   app.use(cors(corsOptions));
   app.use(express.urlencoded({ extended: true }));
   app.use(requestContext);

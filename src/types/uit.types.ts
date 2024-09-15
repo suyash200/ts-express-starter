@@ -1,12 +1,13 @@
-import { Request } from "express"
+import { NodePgDatabase } from "drizzle-orm/node-postgres";
+import { Request } from "express";
 export type ServiceFunctionParams = {
-  dbCon: any,
-  req: Request,
-}
+  dbCon: NodePgDatabase;
+  req: Request;
+};
 
 export type ServiceFunctionReturn = {
   success: boolean;
-  data: any;
+  data?: null | any;
   message: any;
-  statusCode: number
-}
+  statusCode: number;
+};

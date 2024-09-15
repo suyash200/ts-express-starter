@@ -4,7 +4,6 @@ import { Request, Response } from "express";
 import { Client } from "pg";
 import { Logger } from "winston";
 
-
 export interface ResponseBody {
   isSuccess: boolean;
   message: string;
@@ -15,11 +14,11 @@ declare global {
   namespace Express {
     interface Request {
       requestId: string;
-      log: Logger,
-      dbCon: NodePgDatabase,
+      log: Logger;
+      dbCon: NodePgDatabase;
     }
     interface Response {
-      body: ResponseBody
+      body: ResponseBody;
     }
   }
-} 
+}

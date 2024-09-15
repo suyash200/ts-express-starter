@@ -1,7 +1,7 @@
 import miscellaneousConfig from "./miscellaneous.config";
-import { configDotenv } from 'dotenv';
+import { configDotenv } from "dotenv";
 import commonConfig from "./common.config";
-configDotenv()
+configDotenv();
 
 const miscConfig = miscellaneousConfig(process.env);
 
