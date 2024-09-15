@@ -1,3 +1,7 @@
+## [1.1.1] - 2024-09-15
+- adding comments
+
+
 ## [1.1.0] - 2024-09-15
 - Added prettier and husky support
 
