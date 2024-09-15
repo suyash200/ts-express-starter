@@ -3,7 +3,8 @@ import { ServiceFunctionReturn } from "../types/uit.types";
 import { NodePgDatabase } from "drizzle-orm/node-postgres";
 import constructResponse from "./constructResponse.util";
 import constants from "../constants";
-import { Column, eq, SQL } from "drizzle-orm";
+import { Column, eq, Logger, SQL } from "drizzle-orm";
+import logger from "./logger.util";
 
 export const createControllerFromServices = (
   serviceFunction: (
@@ -62,4 +63,10 @@ export const createControllerFromServices = (
 
 export function getFindQuery(feild: Column, value: any): SQL {
   return eq(feild, value);
+}
+
+export class DbLogger implements Logger {
+  logQuery(query: string, params: unknown[]): void {
+    logger.info({ query: JSON.stringify(query), params: params })
+  }
 }

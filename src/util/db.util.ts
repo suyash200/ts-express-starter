@@ -2,8 +2,12 @@ import postgres from "pg";
 import { NodePgDatabase, drizzle } from "drizzle-orm/node-postgres";
 import { miscConfig } from "../config";
 import logger from "./logger.util";
+import { DbLogger } from "./misc.util";
 
 export let db: NodePgDatabase;
+
+
+
 export default async function DbCon() {
   try {
     const dbClient = new postgres.Client({
@@ -14,7 +18,7 @@ export default async function DbCon() {
       database: miscConfig.dbName,
     });
     await dbClient.connect();
-    db = drizzle(dbClient, { logger: true });
+    db = drizzle(dbClient, { logger: new DbLogger() });
     logger.info("DB connected");
     return db;
   } catch (error: any | Error) {

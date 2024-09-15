@@ -110,7 +110,6 @@ export async function getUserService(
   try {
     const findQuery = getFindQuery(users.id, reqBody.params.userId);
     const fetchUsers = await userRep.getEntity(dbCon, findQuery);
-    console.log(fetchUsers[0].deleted !== true);
     if (fetchUsers.length !== 0 && fetchUsers[0].deleted === false) {
       return {
         success: true,
