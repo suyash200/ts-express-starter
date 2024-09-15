@@ -1,6 +1,5 @@
 import postgres from "pg";
 import { NodePgDatabase, drizzle } from "drizzle-orm/node-postgres";
-import pgConfig from "../../drizzle.config";
 import { miscConfig } from "../config";
 import logger from "./logger.util";
 

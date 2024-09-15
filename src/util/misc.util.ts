@@ -1,8 +1,5 @@
 import { Request, Response } from "express";
-import {
-  ServiceFunctionParams,
-  ServiceFunctionReturn,
-} from "../types/uit.types";
+import { ServiceFunctionReturn } from "../types/uit.types";
 import { NodePgDatabase } from "drizzle-orm/node-postgres";
 import constructResponse from "./constructResponse.util";
 import constants from "../constants";
